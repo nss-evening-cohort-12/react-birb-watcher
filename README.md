@@ -1,3 +1,3 @@
-# React Setup
+# React Birb Watcher
 
-First try at getting a react project setup!!!
+Let's Watch some Birbs!
