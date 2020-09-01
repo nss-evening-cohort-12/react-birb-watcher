@@ -24,7 +24,9 @@ class Home extends React.Component {
     return (
       <div className="Home">
         <h1><span role="img" aria-label="birb emoji">🐦</span> <span role="img" aria-label="house emoji">🏚</span></h1>
-        {birbCards}
+        <div className="card-group">
+          {birbCards}
+        </div>
       </div>
     );
   }
