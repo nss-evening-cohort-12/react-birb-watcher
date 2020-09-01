@@ -1,21 +1,14 @@
 import React from 'react';
 
+import BirbCard from '../../shared/BirbCard/BirbCard';
+
 import authData from '../../../helpers/data/authData';
 import birbsData from '../../../helpers/data/birbsData';
-import BirbCard from '../../shared/BirbCard/BirbCard';
 
 class Home extends React.Component {
   state = {
     birbs: [],
   }
-
-  // go get all our birbs (by uid) (convertFirebaseCollection helper?)
-  // create birbData helper getBirbsByUid
-  // getUid function for current user
-  // setState: [], then fill with birbs -> componentDidMount
-  // map over birbs (pass birb as props) and create birb cards down 👇🏻 in render
-  // make a Birb card component
-  // PropTypes for a birbShape!!!!
 
   componentDidMount() {
     birbsData.getBirbsByUid(authData.getUid())
