@@ -38,7 +38,7 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
 const RoutesContainer = ({ authed }) => {
   if (authed === null) {
     return (
-      <div className="spinner" />
+      <div className="fas fa-spinner fa-spin" id="spinner" />
     );
   }
   return (
@@ -80,10 +80,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <React.Fragment>
             <MyNavbar authed={authed} />
             <RoutesContainer authed={authed} />
-          </React.Fragment>
         </BrowserRouter>
       </div>
     );
