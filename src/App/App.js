@@ -35,9 +35,29 @@ const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   return <Route {...rest} render={(props) => routeChecker(props)} />;
 };
 
+const RoutesContainer = ({ authed }) => {
+  if (authed === null) {
+    return (
+      <div className="spinner" />
+    );
+  }
+  return (
+    <div className="container">
+      <Switch>
+        <PrivateRoute path="/home" component={Home} authed={authed} />
+        <PrivateRoute path="/new" component={NewBirb} authed={authed} />
+        <PrivateRoute path="/edit/:birbId" component={EditBirb} authed={authed} />
+        <PrivateRoute path="/birbs/:birbId" component={SingleBirb} authed={authed} />
+        <PublicRoute path="/auth" component={Auth} authed={authed} />
+        <Redirect from="*" to="/home"/>
+      </Switch>
+    </div>
+  );
+}
+
 class App extends React.Component {
   state = {
-    authed: false,
+    authed: null,
   }
 
   componentDidMount() {
@@ -62,16 +82,7 @@ class App extends React.Component {
         <BrowserRouter>
           <React.Fragment>
             <MyNavbar authed={authed} />
-            <div className="container">
-              <Switch>
-                <PrivateRoute path="/home" component={Home} authed={authed} />
-                <PrivateRoute path="/new" component={NewBirb} authed={authed} />
-                <PrivateRoute path="/edit/:birbId" component={EditBirb} authed={authed} />
-                <PrivateRoute path="/birbs/:birbId" component={SingleBirb} authed={authed} />
-                <PublicRoute path="/auth" component={Auth} authed={authed} />
-                <Redirect from="*" to="/home"/>
-              </Switch>
-            </div>
+            <RoutesContainer authed={authed} />
           </React.Fragment>
         </BrowserRouter>
       </div>
